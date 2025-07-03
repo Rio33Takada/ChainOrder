@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150feb7300d2cd47b8dd2874496d5dc, type: 3}
+  m_Name: CharacterData8
+  m_EditorClassIdentifier: 
+  characterID: 8
+  characterName: torumarin
+  baseHP: 100
+  baseATK: 100
+  baseDEF: 100
+  attackSkill: {fileID: 0}
+  specialSkill: {fileID: 0}
+  chainSkill1: {fileID: 0}
+  chainSkill2: {fileID: 0}
+  sortieSkill: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  characterIcon: {fileID: 2086644546020959611, guid: 60d530983b3d7cc42b14c2e37bd9d35b, type: 3}
+  sdCharacter: {fileID: 2086644546020959611, guid: 60d530983b3d7cc42b14c2e37bd9d35b, type: 3}
+  role: 0
+  usesDayNightSystem: 0

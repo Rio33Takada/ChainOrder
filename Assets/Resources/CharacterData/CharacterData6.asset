@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f150feb7300d2cd47b8dd2874496d5dc, type: 3}
+  m_Name: CharacterData6
+  m_EditorClassIdentifier: 
+  characterID: 6
+  characterName: daiopusaito
+  baseHP: 100
+  baseATK: 100
+  baseDEF: 100
+  attackSkill: {fileID: 0}
+  specialSkill: {fileID: 0}
+  chainSkill1: {fileID: 0}
+  chainSkill2: {fileID: 0}
+  sortieSkill: {fileID: 0}
+  passiveSkill: {fileID: 0}
+  characterIcon: {fileID: -3569736919140982445, guid: 2e7bf11dfef36ec4c8c01070b5132b1f, type: 3}
+  sdCharacter: {fileID: -3569736919140982445, guid: 2e7bf11dfef36ec4c8c01070b5132b1f, type: 3}
+  role: 0
+  usesDayNightSystem: 0
