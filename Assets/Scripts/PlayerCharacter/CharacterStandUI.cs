@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterStandUI : MonoBehaviour
 {
@@ -6,13 +7,21 @@ public class CharacterStandUI : MonoBehaviour
     [SerializeField] private SpriteRenderer targetableIcon;
     //[SerializeField] private Animator animator;
 
-    public BattleCharacter Character { get; private set; }
+    [SerializeField] private Button button;
 
-    public void Initialize(BattleCharacter character)
+    public BattleCharacter Character { get; private set; }
+    public BattleInputManager InputManager { get; private set; }
+
+    public void Initialize(BattleCharacter character, BattleInputManager inputManager)
     {
         Character = character;
+        InputManager = inputManager;
         spriteRenderer.sprite = character.BaseData.sdCharacter; // SOŽQÆ
         targetableIcon.enabled = false;
+        if (button != null)
+        {
+            button.onClick.AddListener(() => { InputManager.OnTargetSelected(character); });
+        }
     }
 
     public void MoveTo(Vector3 position, float scale, int order)

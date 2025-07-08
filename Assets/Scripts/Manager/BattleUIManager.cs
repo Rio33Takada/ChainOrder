@@ -71,7 +71,7 @@ public class BattleUIManager : MonoBehaviour
             charaStands[counter] = standUI;
 
             //‰Šú‰»
-            standUI.Initialize(character);
+            standUI.Initialize(character, InputManager);
 
             counter++;
         }
@@ -100,7 +100,7 @@ public class BattleUIManager : MonoBehaviour
 
         EnemyStandUI enemyStandUI = enemyStandGO.GetComponent<EnemyStandUI>();
 
-        enemyStandUI.Initialize(battleEnemy);
+        enemyStandUI.Initialize(battleEnemy, InputManager);
 
         enemyStands[battleEnemy.position] = enemyStandUI;
     }

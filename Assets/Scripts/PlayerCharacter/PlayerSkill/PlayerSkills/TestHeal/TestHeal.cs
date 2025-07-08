@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "TestAttack", menuName = "Character/Skill/TestAttack")]
-public class TestAttack : PlayerSkill
+[CreateAssetMenu(fileName = "TestHeal", menuName = "Character/Skill/TestHeal")]
+public class TestHeal : PlayerSkill
 {
-    public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleEnemy;
+    public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleAlly;
 
     public PlayerSkillData skillData;
 
@@ -16,11 +16,11 @@ public class TestAttack : PlayerSkill
     public override List<SkillEffectResult> GetSkillEffect(BattleCharacter self, BattleUnit selected, List<BattleCharacter> allAllies, List<BattleEnemyCharacter> allEnemies)
     {
         BattleUnit target = selected;
-        int damage = skillData.value;
+        int healAmount = skillData.value;
 
         return new List<SkillEffectResult>
         {
-            new SkillEffectResult(target, SkillEffectType.Damage, damage, 0, "testAttack")
+            new SkillEffectResult(target, SkillEffectType.Heal, healAmount, 0, "testHeal")
         };
     }
 }

@@ -7,9 +7,14 @@ public class BattleInputManager : MonoBehaviour
 
     public enum InputState
     {
+        //非アクティブ
         Idle,
-        SkillSelected,
-        ChainSkillTargetSelect
+        //スキル入力待機
+        WaitingSkillInput,
+        //ターゲット入力待機
+        SkillTargetSelect,
+        //連鎖スキルターゲット入力待機
+        ChainSkillTargetSelect,
     }
 
     private InputState currentState = InputState.Idle;
@@ -25,10 +30,14 @@ public class BattleInputManager : MonoBehaviour
 
     public void OnSkillButtonPressed(BattleCharacter user, PlayerSkill skill)
     {
+        if (currentState == InputState.WaitingSkillInput || currentState == InputState.SkillTargetSelect)
+        {
+
+        }
         // スキル選択の上書き
         skillUser = user;
         selectedSkill = skill;
-        currentState = InputState.SkillSelected;
+        currentState = InputState.SkillTargetSelect;
 
         HighlightTargets(skill); // スキルの対象に応じてハイライト処理
     }
@@ -42,15 +51,16 @@ public class BattleInputManager : MonoBehaviour
         HighlightTargets(chainSkill);
     }
 
-    public void OnTargetSelected()
+    public void OnTargetSelected(BattleUnit selected)
     {
-        if (currentState == InputState.SkillSelected || currentState == InputState.ChainSkillTargetSelect)
+        if (currentState == InputState.SkillTargetSelect || currentState == InputState.ChainSkillTargetSelect)
         {
-            //var effects = selectedSkill.GetSkillEffect(skillUser, battleManager.playerBattleCharacters, battleManager.battleEnemyCharacters);
-            //foreach (var effect in effects)
-            //{
-            //    battleManager.ExecuteSkill(effect);
-            //}
+            var effectMap = selectedSkill.GetSkillEffect(skillUser, selected, battleManager.playerBattleCharacters, battleManager.battleEnemyCharacters);
+            foreach (var effect in effectMap)
+            {
+                battleManager.ExecuteSkill(effect);
+            }
+            
 
             ResetInput();
         }
