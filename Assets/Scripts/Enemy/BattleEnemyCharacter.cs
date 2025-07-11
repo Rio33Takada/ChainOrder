@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BattleEnemyCharacter : BattleUnit
 {
+    public override bool isAlly => false;
     public EnemyData enemyData { get; private set; }
 
     //カウントダウン

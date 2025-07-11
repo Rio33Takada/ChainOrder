@@ -17,8 +17,8 @@ MonoBehaviour:
   baseHP: 100
   baseATK: 100
   baseDEF: 100
-  attackSkill: {fileID: 0}
-  specialSkill: {fileID: 0}
+  attackSkill: {fileID: 11400000, guid: e793e81c0821ec64b941ebded90759f8, type: 2}
+  specialSkill: {fileID: 11400000, guid: e7e7f6d226e731e4298149b24d8d8522, type: 2}
   chainSkill1: {fileID: 0}
   chainSkill2: {fileID: 0}
   sortieSkill: {fileID: 0}

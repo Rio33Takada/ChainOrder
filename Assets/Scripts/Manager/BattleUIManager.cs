@@ -73,6 +73,9 @@ public class BattleUIManager : MonoBehaviour
             //èâä˙âª
             standUI.Initialize(character, InputManager);
 
+            //BattleUnitÇ…ìoò^
+            character.standIcon = standGO;
+
             counter++;
         }
     }
@@ -103,6 +106,8 @@ public class BattleUIManager : MonoBehaviour
         enemyStandUI.Initialize(battleEnemy, InputManager);
 
         enemyStands[battleEnemy.position] = enemyStandUI;
+
+        battleEnemy.standIcon = enemyStandGO;
     }
 
     public void SortEnemyStand()
@@ -120,6 +125,18 @@ public class BattleUIManager : MonoBehaviour
             }
 
             enemyStandUI.MoveTo(transform.position, scale, enemyStandUI.BattleEnemy.position);
+        }
+    }
+
+    public void HideTargetIcon()
+    {
+        foreach(var a in charaStands)
+        {
+            a.HideTargetIcon();
+        }
+        foreach(var e in enemyStands)
+        {
+            e.HideTargetIcon();
         }
     }
 }

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 352b77547c0077947af8a8474737143b, type: 3}
-  m_Name: testAttack
+  m_Name: testHeal
   m_EditorClassIdentifier: 
-  value: 100
-  effectType: 0
+  value: 10
+  effectType: 1

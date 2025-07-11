@@ -6,6 +6,7 @@ using System.Collections.Generic;
 
 public class SelfHeal : EnemySkill
 {
+    public override string skillName => "SelfHeal";
     public EnemySkillData heal;
 
     public int countDown;

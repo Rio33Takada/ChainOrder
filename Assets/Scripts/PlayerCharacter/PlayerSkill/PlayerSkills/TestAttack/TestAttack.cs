@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TestAttack", menuName = "Character/Skill/TestAttack")]
 public class TestAttack : PlayerSkill
 {
+    public override string skillName => "TestAttack";
     public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleEnemy;
 
     public PlayerSkillData skillData;

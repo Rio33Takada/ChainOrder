@@ -4,6 +4,8 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Enemy/Skill/NormalAttack")]
 public class NormalAttack : EnemySkill
 {
+    public override string skillName => "NormalAttack";
+
     public EnemySkillData attack;
 
     public int countDown;

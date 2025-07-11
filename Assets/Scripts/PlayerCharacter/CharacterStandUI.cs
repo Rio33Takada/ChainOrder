@@ -29,6 +29,8 @@ public class CharacterStandUI : MonoBehaviour
         transform.position = position;
         transform.localScale = Vector3.one * scale;
         spriteRenderer.sortingOrder = order;
+
+        button.gameObject.GetComponent<RectTransform>().sizeDelta = new(spriteRenderer.bounds.size.x / scale, spriteRenderer.bounds.size.x / scale);
     }
 
     public void ShowTargetIcon()

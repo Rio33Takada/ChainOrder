@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 352b77547c0077947af8a8474737143b, type: 3}
-  m_Name: testAttack
+  m_Script: {fileID: 11500000, guid: b0e9482c9652881409d8a24e8abb5341, type: 3}
+  m_Name: TestHeal
   m_EditorClassIdentifier: 
-  value: 100
-  effectType: 0
+  skillData: {fileID: 11400000, guid: e5cd87b0e0219d64099a241bf8b1d9c2, type: 2}

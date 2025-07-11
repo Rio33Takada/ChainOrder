@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TestHeal", menuName = "Character/Skill/TestHeal")]
 public class TestHeal : PlayerSkill
 {
+    public override string skillName => "TestHeal";
     public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleAlly;
 
     public PlayerSkillData skillData;

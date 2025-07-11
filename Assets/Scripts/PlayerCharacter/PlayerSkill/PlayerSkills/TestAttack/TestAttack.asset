@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5faf786efe67df44ab7c0455ef71769d, type: 3}
   m_Name: TestAttack
   m_EditorClassIdentifier: 
-  attack: {fileID: 0}
+  skillData: {fileID: 11400000, guid: 61a52cbb0d8e36a49b842e26961a1ddf, type: 2}

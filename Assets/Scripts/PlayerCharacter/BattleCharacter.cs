@@ -4,6 +4,7 @@ using System.Collections.Generic;
 // バトル中に使用される状態データ
 public class BattleCharacter : BattleUnit
 {
+    public override bool isAlly => true;
     public CharacterData BaseData { get; private set; }// 元データへの参照
 
     //出撃中かどうか

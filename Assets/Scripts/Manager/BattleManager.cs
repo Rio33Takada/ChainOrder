@@ -50,6 +50,9 @@ public class BattleManager : MonoBehaviour
         //バトル開始
         stageData = sData;
 
+        //インプットマネージャー
+        inputManager.Initialize(this);
+
 
         //バトルキャラクター生成・初期化
         for (int i = 0; i < playerTeam.Length; i++)
