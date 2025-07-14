@@ -1,13 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterStandUI : MonoBehaviour
+public class CharacterStandUI : StandUI
 {
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private SpriteRenderer targetableIcon;
     //[SerializeField] private Animator animator;
-
-    [SerializeField] private Button button;
 
     public BattleCharacter Character { get; private set; }
     public BattleInputManager InputManager { get; private set; }
@@ -17,7 +14,7 @@ public class CharacterStandUI : MonoBehaviour
         Character = character;
         InputManager = inputManager;
         spriteRenderer.sprite = character.BaseData.sdCharacter; // SOŽQÆ
-        targetableIcon.enabled = false;
+        HideTargetIcon();
         if (button != null)
         {
             button.onClick.AddListener(() => { InputManager.OnTargetSelected(character); });
@@ -26,20 +23,28 @@ public class CharacterStandUI : MonoBehaviour
 
     public void MoveTo(Vector3 position, float scale, int order)
     {
+        float sizeX = spriteRenderer.bounds.size.x;
         transform.position = position;
-        transform.localScale = Vector3.one * scale;
+        spriteRenderer.transform.localScale = Vector3.one * scale / sizeX;
         spriteRenderer.sortingOrder = order;
 
-        button.gameObject.GetComponent<RectTransform>().sizeDelta = new(spriteRenderer.bounds.size.x / scale, spriteRenderer.bounds.size.x / scale);
+        if(order == 4)
+        {
+            UICanvas.enabled = false;
+        }
+        else
+        {
+            UICanvas.enabled = true;
+        }
+
+        UICanvas.sortingOrder = order;
+        button.GetComponent<RectTransform>().sizeDelta = Vector2.one * scale;
+        hpBar.GetComponent<RectTransform>().sizeDelta = new Vector2(50 + 70 * scale, 20);
+        hpBar.transform.localPosition = new(0, 0.75f * scale, 0);
     }
 
-    public void ShowTargetIcon()
+    public void UpdateState()
     {
-        targetableIcon.enabled = true;
-    }
-
-    public void HideTargetIcon()
-    {
-        targetableIcon.enabled = false;
+        hpBar.value = Mathf.Clamp(Character.currentHP / Character.MaxHP, 0, 1);
     }
 }

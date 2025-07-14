@@ -40,14 +40,6 @@ public class BattleUIManager : MonoBehaviour
 
             panelUI.SetUp(character, InputManager);
 
-            //// CharacterData からアイコンを取得してUIに設定
-            //Sprite iconSprite = character.BaseData.characterIcon;
-            //panelUI.SetIcon(iconSprite);
-
-            //// 必要に応じて、名前・HPなども設定
-            //panelUI.SetName(character.BaseData.characterName);
-            //panelUI.SetHP(character.currentHP, character.MaxHP);
-
             counter++;
         }
     }
@@ -87,8 +79,7 @@ public class BattleUIManager : MonoBehaviour
         foreach (var standUI in charaStands)
         {
             Transform transform = standUIPositions[standUI.Character.Position];
-            float scale = scales[standUI.Character.Position]
-                / standUI.gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
+            float scale = scales[standUI.Character.Position];
             standUI.MoveTo(transform.position, scale, standUI.Character.Position);
         }
     }
@@ -120,8 +111,7 @@ public class BattleUIManager : MonoBehaviour
 
             if (enemyStandUI.BattleEnemy.isDeployed == true)
             {
-                scale = enemyScales[enemyStandUI.BattleEnemy.position]
-                    / enemyStandUI.gameObject.GetComponent<SpriteRenderer>().bounds.size.x;
+                scale = enemyScales[enemyStandUI.BattleEnemy.position];
             }
 
             enemyStandUI.MoveTo(transform.position, scale, enemyStandUI.BattleEnemy.position);
@@ -137,6 +127,18 @@ public class BattleUIManager : MonoBehaviour
         foreach(var e in enemyStands)
         {
             e.HideTargetIcon();
+        }
+    }
+
+    public void UpdateUI()
+    {
+        foreach(var a in charaStands)
+        {
+            a.UpdateState();
+        }
+        foreach(var e in enemyStands)
+        {
+            e.UpdateState();
         }
     }
 }

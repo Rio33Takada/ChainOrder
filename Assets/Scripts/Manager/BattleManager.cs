@@ -86,7 +86,7 @@ public class BattleManager : MonoBehaviour
         //ターン管理初期化
         turnCount = 1;
         waveCount = 1;
-        //PlayerTurn();
+        PlayerTurn();
     }
 
     private void EndBattle(bool isWin)
@@ -204,6 +204,7 @@ public class BattleManager : MonoBehaviour
     private void StartPlayerTurn()
     {
         // バフ継続処理や出撃スキルなど
+        inputManager.currentState = BattleInputManager.InputState.WaitingSkillInput;
     }
 
     private void PlayerTurn()

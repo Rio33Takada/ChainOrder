@@ -18,12 +18,13 @@ public class BattleInputManager : MonoBehaviour
         ChainSkillTargetSelect,
     }
 
-    private InputState currentState = InputState.Idle;
+    public InputState currentState = InputState.Idle;
 
     private BattleManager battleManager;
     private BattleUIManager uIManager;
     private PlayerSkill selectedSkill;
     private BattleCharacter skillUser;
+    private List<BattleUnit> selectableUnits;
 
     public void Initialize(BattleManager manager)
     {
@@ -35,14 +36,15 @@ public class BattleInputManager : MonoBehaviour
     {
         if (currentState == InputState.WaitingSkillInput || currentState == InputState.SkillTargetSelect)
         {
+            // スキル選択の上書き
+            skillUser = user;
+            selectedSkill = skill;
+            currentState = InputState.SkillTargetSelect;
 
+            // スキルの対象に応じてハイライト処理
+            selectableUnits = HighlightTargets(skill);
         }
-        // スキル選択の上書き
-        skillUser = user;
-        selectedSkill = skill;
-        currentState = InputState.SkillTargetSelect;
 
-        HighlightTargets(skill); // スキルの対象に応じてハイライト処理
     }
 
     public void OnChainSkillTargetSelect(BattleCharacter user, PlayerSkill chainSkill)
@@ -51,40 +53,41 @@ public class BattleInputManager : MonoBehaviour
         selectedSkill = chainSkill;
         skillUser = user;
 
-        HighlightTargets(chainSkill);
+        selectableUnits = HighlightTargets(chainSkill);
     }
 
     public void OnTargetSelected(BattleUnit selected)
     {
+        if (!selectableUnits.Contains(selected)) return;
+
         if (currentState == InputState.SkillTargetSelect || currentState == InputState.ChainSkillTargetSelect)
         {
-            Debug.Log(selected.standIcon.GetComponent<CharacterStandUI>().Character.BaseData.characterName);
+            currentState = InputState.Idle;
+            //Debug.Log(selected.standIcon.GetComponent<CharacterStandUI>().Character.BaseData.characterName);
             var effectMap = selectedSkill.GetSkillEffect(skillUser, selected, battleManager.playerBattleCharacters, battleManager.battleEnemyCharacters);
             foreach (var effect in effectMap)
             {
                 battleManager.ExecuteSkill(effect);
             }
-            
 
+            uIManager.HideTargetIcon();
             ResetInput();
         }
     }
 
-    private void HighlightTargets(PlayerSkill skill)
+    private List<BattleUnit> HighlightTargets(PlayerSkill skill)
     {
         //ハイライト対象リセット
         uIManager.HideTargetIcon();
 
         // 対象タイプに応じてハイライト対象を決定
         var selectableTargets = targetingRule.GetSelectableTarget(skill.TargetType, battleManager.playerBattleCharacters, battleManager.battleEnemyCharacters);
-        foreach (var t in selectableTargets.Where(a => a.isAlly).ToList())
+        foreach (var t in selectableTargets)
         {
-            t.standIcon.GetComponent<CharacterStandUI>().ShowTargetIcon();
+            t.standIcon.GetComponent<StandUI>().ShowTargetIcon();
         }
-        foreach (var t in selectableTargets.Where(e => !e.isAlly).ToList())
-        {
-            t.standIcon.GetComponent<EnemyStandUI>().ShowTargetIcon();
-        }
+
+        return selectableTargets;
     }
 
     //public void CancelSkillSelection()
@@ -99,5 +102,6 @@ public class BattleInputManager : MonoBehaviour
         selectedSkill = null;
         skillUser = null;
         // ハイライト解除
+        uIManager.HideTargetIcon();
     }
 }
