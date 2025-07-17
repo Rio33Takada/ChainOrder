@@ -17,7 +17,7 @@ public class CharacterStandUI : StandUI
         HideTargetIcon();
         if (button != null)
         {
-            button.onClick.AddListener(() => { InputManager.OnTargetSelected(character); });
+            button.onClick.AddListener(() => { InputManager.OnTargetSelected(Character); });
         }
     }
 

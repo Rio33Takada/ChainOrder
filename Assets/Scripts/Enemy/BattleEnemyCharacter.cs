@@ -20,4 +20,10 @@ public class BattleEnemyCharacter : BattleUnit
     {
         enemyData = baseData;
     }
+
+    public void SetStatus()
+    {
+        MaxHP = enemyData.maxHP;
+        currentHP = MaxHP;
+    }
 }

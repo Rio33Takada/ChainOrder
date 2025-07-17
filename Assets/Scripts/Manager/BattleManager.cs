@@ -62,6 +62,7 @@ public class BattleManager : MonoBehaviour
 
             var battleChar = new BattleCharacter(baseData);
             battleChar.Position = i;
+            battleChar.SetMaxHP();
             playerBattleCharacters.Add(battleChar);
         }
 
@@ -116,6 +117,7 @@ public class BattleManager : MonoBehaviour
                     BattleEnemyCharacter bEC = new BattleEnemyCharacter(be);
                     beQueueList[i].Add(bEC);
                     bEC.position = i;
+                    bEC.SetStatus();
                     battleEnemyCharacters.Add(bEC);
                     if (count == 0)
                     {
@@ -258,6 +260,7 @@ public class BattleManager : MonoBehaviour
         {
             case SkillEffectType.Damage:
                 skillEffect.Target.TakeDamage(skillEffect.Value);
+                Debug.Log("takedamage");
                 break;
             case SkillEffectType.Heal:
                 skillEffect.Target.Heal(skillEffect.Value);
@@ -265,6 +268,7 @@ public class BattleManager : MonoBehaviour
             case SkillEffectType.Buff:
                 break;
         }
+        uiManager.UpdateUI();
     }
 
     private void HandlePlayerCharacterDeath(BattleCharacter character)

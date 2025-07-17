@@ -63,7 +63,6 @@ public class BattleInputManager : MonoBehaviour
         if (currentState == InputState.SkillTargetSelect || currentState == InputState.ChainSkillTargetSelect)
         {
             currentState = InputState.Idle;
-            //Debug.Log(selected.standIcon.GetComponent<CharacterStandUI>().Character.BaseData.characterName);
             var effectMap = selectedSkill.GetSkillEffect(skillUser, selected, battleManager.playerBattleCharacters, battleManager.battleEnemyCharacters);
             foreach (var effect in effectMap)
             {

@@ -15,7 +15,7 @@ public class EnemyStandUI : StandUI
         InputManager = inputManager;
         spriteRenderer.sprite = enemy.enemyData.enemySprite;
         HideTargetIcon();
-        if (button == null)
+        if (button != null)
         {
             button.onClick.AddListener(() => { InputManager.OnTargetSelected(BattleEnemy); });
         }

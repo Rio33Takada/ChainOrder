@@ -27,4 +27,10 @@ public class BattleCharacter : BattleUnit
     {
         BaseData = baseData;
     }
+
+    public void SetMaxHP()
+    {
+        MaxHP = BaseData.baseHP;
+        currentHP = MaxHP;
+    }
 }
