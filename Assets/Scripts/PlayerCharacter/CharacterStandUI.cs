@@ -45,6 +45,6 @@ public class CharacterStandUI : StandUI
 
     public void UpdateState()
     {
-        hpBar.value = Mathf.Clamp(Character.currentHP / Character.MaxHP, 0, 1);
+        hpBar.value = Mathf.Clamp((float)Character.currentHP / Character.MaxHP, 0, 1);
     }
 }

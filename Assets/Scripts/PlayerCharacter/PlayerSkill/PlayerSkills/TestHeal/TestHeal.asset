@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0e9482c9652881409d8a24e8abb5341, type: 3}
   m_Name: TestHeal
   m_EditorClassIdentifier: 
+  _skillName: TestHeal
+  _isChainSkill: 0
+  _targetType: 1
+  _attackTrait: 3
   skillData: {fileID: 11400000, guid: e5cd87b0e0219d64099a241bf8b1d9c2, type: 2}

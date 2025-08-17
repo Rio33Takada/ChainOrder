@@ -53,6 +53,8 @@ public class BattleManager : MonoBehaviour
         //インプットマネージャー
         inputManager.Initialize(this);
 
+        inputManager.OnPlayerActionComplete += EnemyTurn;
+
 
         //バトルキャラクター生成・初期化
         for (int i = 0; i < playerTeam.Length; i++)
@@ -260,7 +262,6 @@ public class BattleManager : MonoBehaviour
         {
             case SkillEffectType.Damage:
                 skillEffect.Target.TakeDamage(skillEffect.Value);
-                Debug.Log("takedamage");
                 break;
             case SkillEffectType.Heal:
                 skillEffect.Target.Heal(skillEffect.Value);

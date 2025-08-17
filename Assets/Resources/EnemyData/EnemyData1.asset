@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   enemyName: "\u3051\u3064\u3070\u3093"
   enemySprite: {fileID: -65545955950717219, guid: 4062327901327e244a043857b363a019, type: 3}
-  maxHP: 10000
+  maxHP: 1000
   attack: 10
   defense: 1
   skills:

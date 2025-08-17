@@ -4,17 +4,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TestHeal", menuName = "Character/Skill/TestHeal")]
 public class TestHeal : PlayerSkill
 {
-    public override string skillName => "TestHeal";
-    public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleAlly;
-
-    public PlayerSkillData skillData;
+    [SerializeField]
+    private PlayerSkillData skillData;
 
     public override PlayerSkillData GetSkill(BattleCharacter self)
     {
         return skillData;
     }
 
-    public override List<SkillEffectResult> GetSkillEffect(BattleCharacter self, BattleUnit selected, List<BattleCharacter> allAllies, List<BattleEnemyCharacter> allEnemies)
+    public override List<SkillEffectResult> GetSkillEffect(
+        BattleCharacter self,
+        BattleUnit selected,
+        List<BattleCharacter> allAllies,
+        List<BattleEnemyCharacter> allEnemies
+    )
     {
         BattleUnit target = selected;
         int healAmount = skillData.value;

@@ -4,9 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TestAttack", menuName = "Character/Skill/TestAttack")]
 public class TestAttack : PlayerSkill
 {
-    public override string skillName => "TestAttack";
-    public override PlayerSkillTargetType TargetType => PlayerSkillTargetType.SingleEnemy;
-
+    [SerializeField]
     public PlayerSkillData skillData;
 
     public override PlayerSkillData GetSkill(BattleCharacter self)
@@ -14,7 +12,12 @@ public class TestAttack : PlayerSkill
         return skillData;
     }
 
-    public override List<SkillEffectResult> GetSkillEffect(BattleCharacter self, BattleUnit selected, List<BattleCharacter> allAllies, List<BattleEnemyCharacter> allEnemies)
+    public override List<SkillEffectResult> GetSkillEffect(
+        BattleCharacter self,
+        BattleUnit selected,
+        List<BattleCharacter> allAllies,
+        List<BattleEnemyCharacter> allEnemies
+    )
     {
         BattleUnit target = selected;
         int damage = skillData.value;

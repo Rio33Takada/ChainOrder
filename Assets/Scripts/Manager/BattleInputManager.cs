@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,6 +27,8 @@ public class BattleInputManager : MonoBehaviour
     private BattleCharacter skillUser;
     private List<BattleUnit> selectableUnits;
 
+    public event Action OnPlayerActionComplete;
+
     public void Initialize(BattleManager manager)
     {
         battleManager = manager;
@@ -38,27 +41,32 @@ public class BattleInputManager : MonoBehaviour
         {
             // スキル選択の上書き
             skillUser = user;
-            selectedSkill = skill;
+            selectedSkill = skill;//BattleManagerから連鎖判定後にスキルリストから設定？
             currentState = InputState.SkillTargetSelect;
 
             // スキルの対象に応じてハイライト処理
             selectableUnits = HighlightTargets(skill);
+
+            //連鎖判定をして連鎖数を表示
+            //スキル選択をイベントでBattleManagerに通知？
         }
 
     }
 
-    public void OnChainSkillTargetSelect(BattleCharacter user, PlayerSkill chainSkill)
-    {
-        currentState = InputState.ChainSkillTargetSelect;
-        selectedSkill = chainSkill;
-        skillUser = user;
+    //public void OnChainSkillTargetSelect(BattleCharacter user, PlayerSkill chainSkill)
+    //{
+    //    currentState = InputState.ChainSkillTargetSelect;
+    //    selectedSkill = chainSkill;
+    //    skillUser = user;
 
-        selectableUnits = HighlightTargets(chainSkill);
-    }
+    //    selectableUnits = HighlightTargets(chainSkill);
+    //}
 
     public void OnTargetSelected(BattleUnit selected)
     {
         if (!selectableUnits.Contains(selected)) return;
+
+        bool isCommandSkill = currentState == InputState.SkillTargetSelect;
 
         if (currentState == InputState.SkillTargetSelect || currentState == InputState.ChainSkillTargetSelect)
         {
@@ -71,6 +79,12 @@ public class BattleInputManager : MonoBehaviour
 
             uIManager.HideTargetIcon();
             ResetInput();
+        }
+
+        if (isCommandSkill)
+        {
+            //イベント通知
+            OnPlayerActionComplete?.Invoke();
         }
     }
 

@@ -35,6 +35,6 @@ public class EnemyStandUI : StandUI
 
     public void UpdateState()
     {
-        hpBar.value = Mathf.Clamp(BattleEnemy.currentHP / BattleEnemy.MaxHP, 0, 1);
+        hpBar.value = Mathf.Clamp((float)BattleEnemy.currentHP / BattleEnemy.MaxHP, 0f, 1f);
     }
 }
